@@ -1,0 +1,11 @@
+{
+  "display_name": "Fists",
+  "weapon_kind": "unarmed",
+  "damage_type": "bludgeoning",
+  "damage_min": 1,
+  "damage_max": 2,
+  "hit_bonus": 0,
+  "parry_bonus": 0,
+  "action_point_cost": 1,
+  "parryable": true
+}

@@ -1,0 +1,11 @@
+{
+  "display_name": "Dagger",
+  "weapon_kind": "dagger",
+  "damage_type": "piercing",
+  "damage_min": 2,
+  "damage_max": 4,
+  "hit_bonus": 10,
+  "parry_bonus": 5,
+  "action_point_cost": 1,
+  "parryable": true
+}

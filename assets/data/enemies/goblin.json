@@ -1,0 +1,16 @@
+{
+  "display_name": "Goblin",
+  "stats": {
+    "max_hp": 15,
+    "max_mp": 0,
+    "max_action_points": 3,
+    "hit_chance": 55,
+    "dodge": 10,
+    "parry": 0,
+    "armor": 5
+  },
+  "attack_profiles": [
+    { "id": "claws", "weapon": "goblin_claws" },
+    { "id": "bite",  "weapon": "goblin_bite"  }
+  ]
+}

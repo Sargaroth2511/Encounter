@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+# Binary assets — never diffed, never line-ending-normalized
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.ttf binary
+*.otf binary
+*.fnt binary
+
+# Godot imported asset metadata is text
+*.import text

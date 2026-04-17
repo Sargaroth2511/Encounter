@@ -1,0 +1,11 @@
+{
+  "display_name": "Shortsword",
+  "weapon_kind": "sword",
+  "damage_type": "slashing",
+  "damage_min": 3,
+  "damage_max": 6,
+  "hit_bonus": 5,
+  "parry_bonus": 10,
+  "action_point_cost": 2,
+  "parryable": true
+}

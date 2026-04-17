@@ -1,0 +1,21 @@
+# Godot 4 generated
+.godot/
+.import/
+*.translation
+
+# Export artifacts
+/builds/
+export.cfg
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Logs from CLI runs
+*.log
+/logs/

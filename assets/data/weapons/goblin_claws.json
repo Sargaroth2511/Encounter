@@ -1,0 +1,11 @@
+{
+  "display_name": "Claws",
+  "weapon_kind": "natural",
+  "damage_type": "slashing",
+  "damage_min": 2,
+  "damage_max": 4,
+  "hit_bonus": 0,
+  "parry_bonus": 0,
+  "action_point_cost": 2,
+  "parryable": true
+}

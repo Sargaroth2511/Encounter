@@ -1,0 +1,11 @@
+{
+  "display_name": "Bite",
+  "weapon_kind": "natural",
+  "damage_type": "piercing",
+  "damage_min": 1,
+  "damage_max": 3,
+  "hit_bonus": 10,
+  "parry_bonus": 0,
+  "action_point_cost": 1,
+  "parryable": true
+}
