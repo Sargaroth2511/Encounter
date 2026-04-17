@@ -10,7 +10,13 @@
     "armor": 5
   },
   "attack_profiles": [
-    { "id": "claws", "weapon": "goblin_claws" },
-    { "id": "bite",  "weapon": "goblin_bite"  }
+    {
+      "id": "claws",
+      "weapon": "goblin_claws"
+    },
+    {
+      "id": "bite",
+      "weapon": "goblin_bite"
+    }
   ]
 }
