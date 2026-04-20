@@ -60,14 +60,14 @@ static func _total_dpr(combatant: Combatant) -> float:
 	var remaining_ap := combatant.stats.max_action_points
 	var total := 0.0
 	for p in sorted:
-		var w := p.weapon
+		var w: WeaponDef = p.weapon
 		if w.action_point_cost <= 0 or remaining_ap <= 0:
 			continue
 		var swings := floori(remaining_ap / w.action_point_cost)
 		if swings <= 0:
 			continue
 		remaining_ap -= swings * w.action_point_cost
-		var mean_dmg := (w.damage_min + w.damage_max) / 2.0
+		var mean_dmg: float = (w.damage_min + w.damage_max) / 2.0
 		var hit := clampf((combatant.stats.hit_chance + w.hit_bonus) / 100.0, 0.05, 0.95)
 		total += mean_dmg * float(swings) * hit
 	return total
@@ -102,7 +102,7 @@ static func compute_curves(combatant: Combatant) -> int:
 	score += _apply_curve("dodge", float(s.dodge))
 	score += _apply_curve("parry", float(s.parry))
 	score += _apply_curve("armor", float(s.armor))
-	score += _apply_curve("offensive_value", _offensive_value(combatant))
+	score += _apply_curve("offensive_value", _total_dpr(combatant))
 	return int(round(score))
 
 static func _apply_curve(stat_name: String, value: float) -> float:
