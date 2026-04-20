@@ -13,6 +13,10 @@
 ##       Optional: "id" (default: creature id), "display_name", "stats"
 ##       (selective overrides only), "attack_profiles" (replaces list).
 ##
+##   (c) Hero reference — pulls base stats + profiles from heroes/:
+##       { "hero": "aria", "side": "PARTY" }
+##       Same optional overrides as creature references.
+##
 ## On any failure returns null and reports the reason via push_error.
 class_name ScenarioLoader
 extends RefCounted
@@ -20,6 +24,8 @@ extends RefCounted
 # Same reason as EnemyLoader: explicit preload until project is re-imported.
 const EnemyLoader   := preload("res://src/core/combat/enemy_loader.gd")
 const EnemyDef      := preload("res://src/core/entities/enemy_def.gd")
+const HeroLoader    := preload("res://src/core/combat/hero_loader.gd")
+const HeroDef       := preload("res://src/core/entities/hero_def.gd")
 const AttackProfile := preload("res://src/core/entities/attack_profile.gd")
 const WeaponLoader  := preload("res://src/core/combat/weapon_loader.gd")
 
@@ -71,7 +77,27 @@ static func _add_combatant(state: CombatState, entry: Dictionary, path: String) 
 	var stats: Stats
 	var profiles: Array[AttackProfile] = []
 
-	if entry.has("creature"):
+	if entry.has("hero"):
+		var hero_id: String = str(entry["hero"])
+		var def: HeroDef = HeroLoader.load_hero(hero_id)
+		if def == null:
+			push_error("Scenario %s: could not load hero '%s'" % [path, hero_id])
+			return false
+		id           = str(entry.get("id", def.hero_id))
+		display_name = str(entry.get("display_name", def.display_name))
+		var overrides_raw: Variant = entry.get("stats", {})
+		if typeof(overrides_raw) != TYPE_DICTIONARY:
+			push_error("Scenario %s: hero %s `stats` overrides must be an object" % [path, id])
+			return false
+		var overrides: Dictionary = overrides_raw
+		stats = def.base_stats.with_overrides(overrides) if not overrides.is_empty() \
+				else def.base_stats.duplicate_stats()
+		if entry.has("attack_profiles"):
+			if not _parse_profiles(entry["attack_profiles"], path, id, profiles):
+				return false
+		else:
+			profiles = def.attack_profiles.duplicate()
+	elif entry.has("creature"):
 		var creature_id: String = str(entry["creature"])
 		var def: EnemyDef = EnemyLoader.load_enemy(creature_id)
 		if def == null:

@@ -1,0 +1,11 @@
+{
+  "scenarios": [
+    "basic",
+    "balance_duel",
+    "hp_test",
+    "armor_test",
+    "ap_test",
+    "dodge_test",
+    "hit_test"
+  ]
+}

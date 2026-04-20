@@ -19,3 +19,12 @@ Thumbs.db
 # Logs from CLI runs
 *.log
 /logs/
+
+# Python virtualenv and cache
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/

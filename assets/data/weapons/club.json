@@ -1,0 +1,11 @@
+{
+  "display_name": "Club",
+  "weapon_kind": "bludgeon",
+  "damage_type": "bludgeoning",
+  "damage_min": 1,
+  "damage_max": 3,
+  "hit_bonus": 0,
+  "parry_bonus": 0,
+  "action_point_cost": 2,
+  "parryable": true
+}

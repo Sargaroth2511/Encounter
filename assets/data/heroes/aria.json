@@ -1,0 +1,16 @@
+{
+  "id": "aria",
+  "display_name": "Aria",
+  "stats": {
+    "max_hp": 24,
+    "max_mp": 0,
+    "max_action_points": 4,
+    "hit_chance": 75,
+    "dodge": 10,
+    "parry": 10,
+    "armor": 2
+  },
+  "attack_profiles": [
+    { "id": "main_hand", "weapon": "shortsword" }
+  ]
+}

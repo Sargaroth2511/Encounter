@@ -20,6 +20,9 @@ var statuses: Array[StringName] = []
 ## profile is required to attack; combatants with an empty list can only
 ## use non-attack actions.
 var attack_profiles: Array[AttackProfile] = []
+## Total damage received beyond 0 HP. Used by balance tooling to measure
+## how decisively a combatant was beaten (fictive negative HP).
+var overkill: int = 0
 
 func _init(id_: StringName, display_name_: String, side_: int, stats_: Stats) -> void:
 	id = id_
@@ -36,6 +39,8 @@ func is_alive() -> bool:
 func apply_damage(amount: int) -> int:
 	var before := hp
 	hp = max(0, hp - amount)
+	if hp == 0 and amount > before:
+		overkill += amount - before
 	return before - hp
 
 func apply_heal(amount: int) -> int:

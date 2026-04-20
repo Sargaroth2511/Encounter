@@ -3,21 +3,9 @@
   "display_name": "Basic Encounter",
   "combatants": [
     {
+      "hero": "aria",
       "id": "aria",
-      "display_name": "Aria",
-      "side": "PARTY",
-      "stats": {
-        "max_hp": 24,
-        "max_mp": 0,
-        "max_action_points": 4,
-        "hit_chance": 75,
-        "dodge": 10,
-        "parry": 10,
-        "armor": 15
-      },
-      "attack_profiles": [
-        { "id": "main_hand", "weapon": "shortsword" }
-      ]
+      "side": "PARTY"
     },
     {
       "creature": "goblin",

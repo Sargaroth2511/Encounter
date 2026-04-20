@@ -3,20 +3,17 @@
   "display_name": "Balance Duel (Aria vs 3 goblins)",
   "combatants": [
     {
+      "hero": "aria",
       "id": "aria",
-      "display_name": "Aria",
       "side": "PARTY",
       "stats": {
         "max_hp": 28,
-        "max_action_points": 4,
-        "hit_chance": 75,
-        "dodge": 10,
         "parry": 15,
-        "armor": 20
+        "armor": 15
       },
       "attack_profiles": [
         { "id": "main_hand", "weapon": "shortsword" },
-        { "id": "off_hand",  "weapon": "dagger"     }
+        { "id": "off_hand",  "weapon": "dagger" }
       ]
     },
     { "creature": "goblin", "id": "goblin_1", "display_name": "Goblin#1", "side": "FOES" },

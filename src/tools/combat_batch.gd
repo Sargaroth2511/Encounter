@@ -100,6 +100,8 @@ func _run_one(engine: CombatEngine, state: CombatState, seed_value: int, max_rou
 		"rounds": state.round_number,
 		"party_hp_pct": _side_hp_pct(state, Combatant.Side.PARTY),
 		"foes_hp_pct":  _side_hp_pct(state, Combatant.Side.FOES),
+		"party_fictive_hp_pct": _side_fictive_hp_pct(state, Combatant.Side.PARTY),
+		"foes_fictive_hp_pct":  _side_fictive_hp_pct(state, Combatant.Side.FOES),
 		"party_survivors": party_alive,
 		"foes_survivors":  foes_alive,
 	}
@@ -118,6 +120,17 @@ func _side_hp_pct(state: CombatState, side: int) -> float:
 			hp += max(0, c.hp)
 			max_hp += c.stats.max_hp
 	return 0.0 if max_hp == 0 else float(hp) / float(max_hp)
+
+## Fictive HP fraction — includes overkill as negative HP.
+## Range: [−∞, 1.0]. Dead but barely beaten → 0. Obliterated → large negative.
+func _side_fictive_hp_pct(state: CombatState, side: int) -> float:
+	var fictive_hp: float = 0.0
+	var max_hp: int = 0
+	for c in state.combatants:
+		if c.side == side:
+			fictive_hp += float(c.hp - c.overkill)
+			max_hp += c.stats.max_hp
+	return 0.0 if max_hp == 0 else fictive_hp / float(max_hp)
 
 func _describe_roster(state: CombatState) -> Array:
 	var out: Array = []
@@ -169,6 +182,8 @@ func _summarize(
 	var round_max: int = 0
 	var party_hp_sum: float = 0.0
 	var foes_hp_sum: float = 0.0
+	var party_fictive_sum: float = 0.0
+	var foes_fictive_sum: float = 0.0
 	for r in results:
 		match r["winner"]:
 			"party":   wins_party += 1
@@ -180,6 +195,8 @@ func _summarize(
 		round_max = max(round_max, r["rounds"])
 		party_hp_sum += r["party_hp_pct"]
 		foes_hp_sum  += r["foes_hp_pct"]
+		party_fictive_sum += r["party_fictive_hp_pct"]
+		foes_fictive_sum  += r["foes_fictive_hp_pct"]
 	if results.is_empty():
 		round_min = 0
 	var n: float = float(max(1, results.size()))
@@ -212,6 +229,8 @@ func _summarize(
 			"max_rounds": round_max,
 			"avg_party_hp_remaining": party_hp_sum / n,
 			"avg_foes_hp_remaining":  foes_hp_sum  / n,
+			"avg_party_fictive_hp_remaining": party_fictive_sum / n,
+			"avg_foes_fictive_hp_remaining":  foes_fictive_sum  / n,
 		},
 	}
 
@@ -246,6 +265,9 @@ func _format_summary(s: Dictionary) -> String:
 	lines.append("  avg HP remaining: party=%.1f%%  foes=%.1f%%" % [
 			float(r["avg_party_hp_remaining"]) * 100.0,
 			float(r["avg_foes_hp_remaining"])  * 100.0])
+	lines.append("  avg fictive HP:   party=%.1f%%  foes=%.1f%%" % [
+			float(r["avg_party_fictive_hp_remaining"]) * 100.0,
+			float(r["avg_foes_fictive_hp_remaining"])  * 100.0])
 	return "\n".join(lines)
 
 func _parse_args(argv: PackedStringArray) -> Dictionary:

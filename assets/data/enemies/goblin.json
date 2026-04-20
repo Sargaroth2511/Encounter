@@ -1,13 +1,13 @@
 {
   "display_name": "Goblin",
   "stats": {
-    "max_hp": 15,
+    "max_hp": 50,
     "max_mp": 0,
     "max_action_points": 3,
     "hit_chance": 55,
     "dodge": 10,
     "parry": 0,
-    "armor": 5
+    "armor": 4
   },
   "attack_profiles": [
     {

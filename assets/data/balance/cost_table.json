@@ -1,0 +1,15 @@
+{
+  "_note": "normalization_factor: tuned so baseline hero (Aria at starting stats) scores 100. Aria raw = DPR(7.2) * EHP(34.67) = 249.6 => factor = 100/249.6 = 0.4006. Update if baseline hero stats change significantly.",
+  "normalization_factor": 0.4006,
+  "armor_k": 50,
+  "_stat_costs_note": "Legacy linear cost table — used by compute_curves() and calibrate_weights.py.",
+  "stat_costs": {
+    "max_hp": 1.00,
+    "max_mp": 0.05,
+    "hit_chance": 0.42,
+    "dodge": 0.25,
+    "parry": 0.38,
+    "armor": 1.00
+  },
+  "offensive_cost": 5.03
+}

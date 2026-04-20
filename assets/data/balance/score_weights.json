@@ -1,0 +1,42 @@
+{
+  "max_hp": {
+    "scale": 55,
+    "midpoint": 28,
+    "steepness": 0.95
+  },
+  "max_mp": {
+    "scale": 5,
+    "midpoint": 10,
+    "steepness": 1.0
+  },
+  "max_action_points": {
+    "scale": 5,
+    "midpoint": 4,
+    "steepness": 1.0
+  },
+  "hit_chance": {
+    "scale": 22,
+    "midpoint": 58,
+    "steepness": 1.0
+  },
+  "dodge": {
+    "scale": 14,
+    "midpoint": 18,
+    "steepness": 1.2
+  },
+  "parry": {
+    "scale": 20,
+    "midpoint": 18,
+    "steepness": 1.2
+  },
+  "armor": {
+    "scale": 8,
+    "midpoint": 25,
+    "steepness": 1.3
+  },
+  "offensive_value": {
+    "scale": 35,
+    "midpoint": 10,
+    "steepness": 1.0
+  }
+}

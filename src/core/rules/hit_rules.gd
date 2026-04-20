@@ -20,7 +20,8 @@ enum Outcome { HIT, MISS, DODGED, PARRIED }
 const HIT_MIN: int = 5
 const HIT_MAX: int = 95
 const AVOID_MAX: int = 95
-const ARMOR_MAX: int = 95
+const ARMOR_K: float = 50.0
+const ARMOR_CEILING: float = 0.75
 
 static func outcome_name(o: int) -> String:
 	return Outcome.keys()[o].to_lower()
@@ -63,12 +64,13 @@ static func resolve(attacker: Combatant, weapon: WeaponDef, defender: Combatant,
 
 	# 4) DAMAGE + ARMOR
 	var raw: int = rng.randi_range(weapon.damage_min, weapon.damage_max)
-	var armor_pct: int = clampi(defender.stats.armor, 0, ARMOR_MAX)
-	var mitigated: int = int(floor(raw * (100 - armor_pct) / 100.0))
+	var armor_total: float = float(defender.stats.armor)
+	var mit: float = clampf(armor_total / (armor_total + ARMOR_K), 0.0, ARMOR_CEILING)
+	var mitigated: int = int(floor(raw * (1.0 - mit)))
 	if raw > 0:
 		mitigated = max(1, mitigated)
 	result["raw_damage"] = raw
-	result["armor_pct"] = armor_pct
+	result["armor_pct"] = int(round(mit * 100.0))
 	result["damage"] = mitigated
 	return result
 

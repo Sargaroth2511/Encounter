@@ -1,0 +1,38 @@
+{
+  "id": "hit_test",
+  "display_name": "Hit Chance Isolation — 50% vs 85% hit",
+  "combatants": [
+    {
+      "id": "fighter_a",
+      "display_name": "Fighter A",
+      "side": "PARTY",
+      "stats": {
+        "max_hp": 25,
+        "max_action_points": 3,
+        "hit_chance": 50,
+        "dodge": 5,
+        "parry": 0,
+        "armor": 0
+      },
+      "attack_profiles": [
+        { "id": "main_hand", "weapon": "shortsword" }
+      ]
+    },
+    {
+      "id": "fighter_b",
+      "display_name": "Fighter B",
+      "side": "FOES",
+      "stats": {
+        "max_hp": 25,
+        "max_action_points": 3,
+        "hit_chance": 85,
+        "dodge": 5,
+        "parry": 0,
+        "armor": 0
+      },
+      "attack_profiles": [
+        { "id": "main_hand", "weapon": "shortsword" }
+      ]
+    }
+  ]
+}
